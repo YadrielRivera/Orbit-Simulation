@@ -1,6 +1,4 @@
-#include <iostream>
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include "Input.h"
 
 using namespace std;
 
@@ -10,8 +8,8 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
     glViewport(0, 0, width, height);
 }  
 
-int main(){
-    
+
+GLFWwindow* setup(){
     glfwInit();
     glfwDefaultWindowHints();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -25,22 +23,40 @@ int main(){
 
         cout << "Failed to create window. Terminating process..." << endl;
         glfwTerminate();
-        return -1;
+        return nullptr;
     }
     glfwMakeContextCurrent(window);
 
     if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)){
 
         cout << "Failed to initialize GLAD. Terminating process..." << endl;
-        return -1;
+        glfwTerminate();
+        return nullptr;
     }
 
     glViewport(0,0,800,600);
 
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
+    return window;
+}
+
+void processInput(GLFWwindow* window){
+    
+    Input::onEscape(window);
+}
+
+int main(){
+
+    GLFWwindow* window = setup();   
+
+    //render loop
     while (!glfwWindowShouldClose(window))
     {
+        //always check for input
+        processInput(window);
+
+        // goes at the end
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
