@@ -4,6 +4,12 @@
 
 using namespace std;
 
+
+void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+{
+    glViewport(0, 0, width, height);
+}  
+
 int main(){
     
     glfwInit();
@@ -30,6 +36,8 @@ int main(){
     }
 
     glViewport(0,0,800,600);
+
+    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
     while (!glfwWindowShouldClose(window))
     {
