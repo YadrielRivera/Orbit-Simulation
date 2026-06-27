@@ -54,7 +54,7 @@ int main(){
 
     GLFWwindow* window = setup();   
 
-    //render loop
+    //render loop everything happens here
     while (!glfwWindowShouldClose(window))
     {
         //set initial background color
