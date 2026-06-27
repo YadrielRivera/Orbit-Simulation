@@ -38,6 +38,9 @@ GLFWwindow* setup(){
 
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
+    // base background color
+    glClearColor(0.0f,0.0f,0.0f,1.0f);
+
     return window;
 }
 
@@ -46,6 +49,7 @@ void processInput(GLFWwindow* window){
     Input::onEscape(window);
 }
 
+
 int main(){
 
     GLFWwindow* window = setup();   
@@ -53,6 +57,9 @@ int main(){
     //render loop
     while (!glfwWindowShouldClose(window))
     {
+        //set initial background color
+        glClear(GL_COLOR_BUFFER_BIT);
+
         //always check for input
         processInput(window);
 
