@@ -6,16 +6,18 @@ class CelestialBody{
 
     public:
         std::string name;
-        long double mass;
-        long double diameter;
+        long double massKg;
+        long double diameterM;
+        long double ageYr;
         std::tuple<double,double> xyPos;
         
-        CelestialBody(std::string name, long double mass, long double diameter, std::tuple<double,double> xyPos ){
+        CelestialBody(std::string name, long double massKg, long double diameterM, std::tuple<double,double> xyPos, long int ageYr){
 
             this->name = name;
-            this->mass = mass;
-            this->diameter = diameter;
+            this->massKg = massKg;
+            this->diameterM = diameterM;
             this->xyPos = xyPos;
+            this->ageYr = ageYr;
 
         }
 
@@ -26,11 +28,11 @@ class CelestialBody{
         }
 
         long double getMass(){
-            return this->mass;
+            return this->massKg;
         }
 
         long double getDiameter(){
-            return this->diameter;
+            return this->diameterM;
         }
 
         std::tuple<double,double> getXYPos(){

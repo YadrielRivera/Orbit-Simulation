@@ -1,28 +1,17 @@
 #pragma once
 
-#include "../CelestialBody.h"
+#include "Star.hpp"
 
 
-class Sun : public CelestialBody {
+class Sun : public Star {
     
     public:
 
         Sun(){
-
             this->name = "Sun";
-            this->mass = 1.9891e30;
-            this->diameter = 1.392e9;
+            this->massKg = 1.9891e30;
+            this->diameterM = 1.392e9;
             this->xyPos = std::tuple<double,double>(0.0, 0.0);
+            this->ageYr = 4.6e9;
         }
-
-        Sun(std::string name, long double mass, long double diameter, std::tuple<double, double> xypos ){
-            this->name = name;
-            this->mass = mass;
-            this-> diameter = diameter;
-            this->xyPos = xypos;
-        }
-        
-
-
-
 };
