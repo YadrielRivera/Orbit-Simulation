@@ -1,12 +1,11 @@
 #pragma once
 
-#include "../CelestialBody.h"
+#include "Planet.hpp"
 
-class Earth : public CelestialBody{
+class Earth : public Planet{
 
     public: 
-        long int population;
-
+        long long population;
 
         Earth(std::tuple<double, double> xyPos){
 
