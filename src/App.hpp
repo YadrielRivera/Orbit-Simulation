@@ -3,5 +3,5 @@
 #include <iostream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "CelestialBodies/Planets/Earth.hpp"
-#include "CelestialBodies/Stars/Sun.hpp"
+#include "CelestialBodies/Planets/headers/Earth.hpp"
+#include "CelestialBodies/Stars/headers/Sun.hpp"
