@@ -6,4 +6,5 @@ Sun::Sun(){
     this->diameterM = 1.392e9;
     this->xyPos = std::tuple<double,double>(0.0, 0.0);
     this->ageYr = 4.6e9;
+    this->SurfTempCel = 5500.0;
 }
