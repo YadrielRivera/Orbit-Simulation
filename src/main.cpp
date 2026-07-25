@@ -110,7 +110,7 @@ unsigned int createShaderProgram()
     return program;
 }
 
-void renderBG()
+void renderBG(GLFWwindow* window)
 {
     static bool initialized = false;
     static unsigned int shaderProgram = 0;
@@ -158,20 +158,37 @@ void renderBG()
 
         stbi_set_flip_vertically_on_load(1);
 
-        int width, height, num_comp; 
+        int bgWidth, bgHeight, bgNumcomp, logWdith, logHeight, logNumcomp; 
 
-        unsigned char* image_data = stbi_load("../assets/background.png",&width,&height,&num_comp,4);
+        unsigned char* background = stbi_load("../assets/background.png",&bgWidth,&bgHeight,&bgNumcomp,4);
+        GLFWimage logo;
+        logo.pixels  = stbi_load("../assets/orbit.png", &logWdith, &logHeight, &logNumcomp, 4);
 
-        if (image_data)
+        if (!logo.pixels)
+        { 
+            std::cout << "Logo load FAIL" << endl;
+        }
+        else 
+        {
+            std:cout << "Logo load SUCCESS" << endl;
+
+            logo.width = logWdith;
+            logo.height = logHeight;
+
+            glfwSetWindowIcon(window, 1, &logo);
+            stbi_image_free(logo.pixels);
+        }
+
+        if (background)
         {       
 
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image_data);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, bgWidth, bgHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, background);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-        stbi_image_free(image_data);
+        stbi_image_free(background);        
         initialized = true;
 
         std::cout<< "Image load SUCCESS" << endl;
@@ -206,7 +223,7 @@ int main(){
     //render loop everything happens here
     while (!glfwWindowShouldClose(window))
     {
-        renderBG();
+        renderBG(window);
 
         //always check for input
         processInput(window);
