@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../CelestialBody.hpp"
+#include "../../CelestialBody.hpp"
 
 
 class Star : public CelestialBody {
