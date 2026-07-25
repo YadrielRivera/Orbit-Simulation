@@ -110,7 +110,7 @@ unsigned int createShaderProgram()
     return program;
 }
 
-void renderBase()
+void renderBG()
 {
     static bool initialized = false;
     static unsigned int shaderProgram = 0;
@@ -156,15 +156,31 @@ void renderBase()
         glGenTextures(1, &textureId);
         glBindTexture(GL_TEXTURE_2D, textureId);
 
-        // Placeholder 1x1 white texture. Replace this later with an image loader.
-        unsigned char whitePixel[] = {255, 255, 255, 255};
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, whitePixel);
+        stbi_set_flip_vertically_on_load(1);
+
+        int width, height, num_comp; 
+
+        unsigned char* image_data = stbi_load("../assets/background.png",&width,&height,&num_comp,4);
+
+        if (image_data)
+        {       
+
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image_data);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
+        stbi_image_free(image_data);
         initialized = true;
+
+        std::cout<< "Image load SUCCESS" << endl;
+
+        }
+        else
+        {
+            std::cout<<"Image load FAIL" << endl;
+        }
     }
 
     glClear(GL_COLOR_BUFFER_BIT);
@@ -190,7 +206,7 @@ int main(){
     //render loop everything happens here
     while (!glfwWindowShouldClose(window))
     {
-        renderBase();
+        renderBG();
 
         //always check for input
         processInput(window);
