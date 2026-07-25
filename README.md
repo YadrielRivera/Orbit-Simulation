@@ -1,1 +1,8 @@
-This is the base env for future openGL projects 
+## Building the project
+
+```bash
+mkdir -p build
+cd build
+cmake -DCMAKE_BUILD_TYPE=RELEASE -G "Unix Makefiles" ..
+make VERBOSE=1
+```
