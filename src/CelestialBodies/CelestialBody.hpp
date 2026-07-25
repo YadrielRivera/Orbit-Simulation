@@ -1,6 +1,13 @@
 #pragma once
+
+#include <iostream>
 #include <tuple>
 #include <string>
+#include "../../include/glad/glad.h"
+#include "../../include/GLFW/glfw3.h"
+
+#define STB_IMAGE_IMPLEMENTATION
+#include "../../include/stb_image/stb_image.h"
 
 class CelestialBody{
 
@@ -38,6 +45,8 @@ class CelestialBody{
         std::tuple<double,double> getXYPos(){
             return this->xyPos;
         }
+
+        virtual void draw() = 0;
 
         virtual ~CelestialBody(){}
 

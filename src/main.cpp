@@ -2,6 +2,7 @@
 
 
 
+
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
     glViewport(0, 0, width, height);
@@ -110,7 +111,7 @@ unsigned int createShaderProgram()
     return program;
 }
 
-void renderBG(GLFWwindow* window)
+void render(GLFWwindow* window)
 {
     static bool initialized = false;
     static unsigned int shaderProgram = 0;
@@ -156,13 +157,16 @@ void renderBG(GLFWwindow* window)
         glGenTextures(1, &textureId);
         glBindTexture(GL_TEXTURE_2D, textureId);
 
+        // Image rendering 
+
         stbi_set_flip_vertically_on_load(1);
 
-        int bgWidth, bgHeight, bgNumcomp, logWdith, logHeight, logNumcomp; 
+        int bgWidth, bgHeight, bgNumcomp, logWidth, logHeight, logNumcomp; 
 
         unsigned char* background = stbi_load("../assets/background.png",&bgWidth,&bgHeight,&bgNumcomp,4);
+
         GLFWimage logo;
-        logo.pixels  = stbi_load("../assets/orbit.png", &logWdith, &logHeight, &logNumcomp, 4);
+        logo.pixels  = stbi_load("../assets/orbit.png", &logWidth, &logHeight, &logNumcomp, 4);
 
         if (!logo.pixels)
         { 
@@ -172,7 +176,7 @@ void renderBG(GLFWwindow* window)
         {
             std:cout << "Logo load SUCCESS" << endl;
 
-            logo.width = logWdith;
+            logo.width = logWidth;
             logo.height = logHeight;
 
             glfwSetWindowIcon(window, 1, &logo);
@@ -191,12 +195,12 @@ void renderBG(GLFWwindow* window)
         stbi_image_free(background);        
         initialized = true;
 
-        std::cout<< "Image load SUCCESS" << endl;
+        std::cout<< "Background load SUCCESS" << endl;         
 
         }
         else
         {
-            std::cout<<"Image load FAIL" << endl;
+            std::cout<<"Backgorund load FAIL" << endl;
         }
     }
 
@@ -223,7 +227,7 @@ int main(){
     //render loop everything happens here
     while (!glfwWindowShouldClose(window))
     {
-        renderBG(window);
+        render(window);
 
         //always check for input
         processInput(window);
