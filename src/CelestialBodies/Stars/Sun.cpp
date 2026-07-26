@@ -1,10 +1,3 @@
 #include "headers/Sun.hpp"
 
-Sun::Sun(){
-    this->name = "Sun";
-    this->massKg = 1.9891e30;
-    this->diameterM = 1.392e9;
-    this->xyPos = std::tuple<double,double>(0.0, 0.0);
-    this->ageYr = 4.6e9;
-    this->SurfTempCel = 5500.0;
-}
+Sun::Sun() : Star("Sun",1.9891e30,1.392e9,std::tuple<double,double>(0.0, 0.0),4.6e9,5500.0){}

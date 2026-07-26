@@ -197,16 +197,15 @@ void render(GLFWwindow* window)
         initialized = true;
 
         std::cout<< "Background load SUCCESS" << endl;
-        }
-        else
-        {
-            std::cout<<"Background load FAIL" << endl;
-            initialized = true;  // Still initialize even if background fails
-        }
 
-        // Create Earth regardless of background loading
         Earth* earth  = new Earth(std::tuple<double,double>(0.0,0.0));
         earth->draw();
+
+        }else
+        {
+            std::cout<<"Background load FAIL" << endl;
+        }
+
     }
 
     glClear(GL_COLOR_BUFFER_BIT);

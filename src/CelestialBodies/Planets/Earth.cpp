@@ -1,15 +1,11 @@
 #include "headers/Earth.hpp"
 
-Earth::Earth(std::tuple<double, double> xyPos){
+Earth::Earth(std::tuple<double, double> xyPos) 
+    : Planet("Earth", 5.9722e24, 1.2742e7, xyPos, 4.54e9) {
 
     std::cout << "Creating Earth..." << std::endl;
     
-    this->name = "Earth";
-    this->diameterM = 1.2742e7;
-    this->massKg = 5.9722e24;
-    this->xyPos = xyPos; 
     this->population = 8e9;
-    this->ageYr = 4.54e9;
 }
 
 void Earth::draw() {
@@ -17,7 +13,7 @@ void Earth::draw() {
 
     std::cout << "Rendering Earth..." << std::endl;
 
-    unsigned char* earthImg = stbi_load("../../assets/earth.png", &hi, &wi, &nuC, 4);
+    unsigned char* earthImg = stbi_load("../assets/earth.png", &wi, &hi, &nuC, 4);
 
     if (earthImg)
     {

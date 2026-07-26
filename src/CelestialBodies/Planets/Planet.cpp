@@ -9,5 +9,5 @@ Planet::Planet(std::string name, long double massKg, long double diameterM, std:
 }
 
 Planet::Planet(){
-    std::cout << "Empty planet creation not allowed." << std::endl; 
+    std::cout << "Planet: Empty planet creation not allowed." << std::endl; 
 }
