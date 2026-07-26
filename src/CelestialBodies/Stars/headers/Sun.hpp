@@ -7,5 +7,5 @@ class Sun : public Star {
     
     public:
 
-        Sun(){};
+        Sun();
 };

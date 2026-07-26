@@ -6,4 +6,8 @@ Planet::Planet(std::string name, long double massKg, long double diameterM, std:
         this->diameterM = diameterM;
         this->massKg = massKg;
         this->xyPos = xyPos;
-    }
+}
+
+Planet::Planet(){
+    std::cout << "Empty planet creation not allowed." << std::endl; 
+}

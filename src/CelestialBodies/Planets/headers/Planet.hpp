@@ -6,7 +6,7 @@ class Planet : public CelestialBody{
 
     public:
 
-    Planet(std::string name, long double massKg, long double diameterM, std::tuple<double, double> xyPos, long double ageYr){};
+    Planet(std::string name, long double massKg, long double diameterM, std::tuple<double, double> xyPos, long double ageYr);
 
-    Planet(){};
+    Planet();
 };

@@ -7,8 +7,8 @@ class Earth : public Planet{
     public: 
         long long population;
 
-        Earth(std::tuple<double, double> xyPos){};
+        Earth(std::tuple<double, double> xyPos);
 
         
-        void draw() override {}; 
+        void draw() override; 
 };
