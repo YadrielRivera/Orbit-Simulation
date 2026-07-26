@@ -1,3 +1,4 @@
+#define STB_IMAGE_IMPLEMENTATION
 #include "Input.hpp"
 
 
@@ -174,7 +175,7 @@ void render(GLFWwindow* window)
         }
         else 
         {
-            std:cout << "Logo load SUCCESS" << endl;
+            std::cout << "Logo load SUCCESS" << endl;
 
             logo.width = logWidth;
             logo.height = logHeight;
@@ -195,13 +196,17 @@ void render(GLFWwindow* window)
         stbi_image_free(background);        
         initialized = true;
 
-        std::cout<< "Background load SUCCESS" << endl;         
-
+        std::cout<< "Background load SUCCESS" << endl;
         }
         else
         {
-            std::cout<<"Backgorund load FAIL" << endl;
+            std::cout<<"Background load FAIL" << endl;
+            initialized = true;  // Still initialize even if background fails
         }
+
+        // Create Earth regardless of background loading
+        Earth* earth  = new Earth(std::tuple<double,double>(0.0,0.0));
+        earth->draw();
     }
 
     glClear(GL_COLOR_BUFFER_BIT);

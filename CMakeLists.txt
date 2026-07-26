@@ -11,6 +11,10 @@ add_executable(${PROJECT_NAME}
     src/main.cpp
     src/glad.c
     Resources/resource.rc
+    src/CelestialBodies/Planets/Earth.cpp
+    src/CelestialBodies/Planets/Planet.cpp
+    src/CelestialBodies/Stars/Star.cpp
+    src/CelestialBodies/Stars/Sun.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE glfw3)
